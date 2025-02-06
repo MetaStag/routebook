@@ -1,0 +1,5 @@
+routebook-frontend/node_modules
+routebook-backend/node_modules
+
+routebook-frontend/.env
+routebook-backend/.env
