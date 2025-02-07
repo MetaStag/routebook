@@ -1,10 +1,13 @@
 import { useState } from "react";
+import { useAppDispatch } from "../hooks";
+import { login } from "../features/auth/authSlice";
 import { ToastContainer, toast } from "react-toastify";
 
 export default function Login() {
   const [signup, setSignup] = useState(true);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const dispatch = useAppDispatch();
 
   const validate = (): boolean => {
     if (!username.trim()) {
@@ -35,8 +38,9 @@ export default function Login() {
       if (!response.ok) {
         toast.error("Could not Sign up. Try a different username");
       } else {
-        const body = await response.json()
-        localStorage.setItem("jwtToken", body.message)
+        const body = await response.json();
+        localStorage.setItem("jwtToken", body.message);
+        dispatch(login());
         toast.success("Successfully signed up!");
       }
     } else {
@@ -54,7 +58,8 @@ export default function Login() {
         toast.error("Could not log in. Check your username and password");
       } else {
         const body = await response.json();
-        localStorage.setItem("jwtToken", body.message)
+        localStorage.setItem("jwtToken", body.message);
+        dispatch(login());
         toast.success("Successfully logged in!");
       }
     }
