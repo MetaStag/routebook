@@ -1,6 +1,6 @@
 import { useAppDispatch, useAppSelector } from "../hooks";
 import { logout } from "../features/auth/authSlice";
-import { useNavigate } from "react-router";
+import { useNavigate, NavLink } from "react-router";
 
 export default function Navbar() {
   const dispatch = useAppDispatch();
@@ -19,9 +19,9 @@ export default function Navbar() {
         Routebook
       </button>
       <div className="flex flex-row gap-x-4">
-        <span>Dashboard</span>
-        <span>Journal</span>
-        <span>Itinerary</span>
+        <NavLink to="/dashboard">Dashboard</NavLink>
+        <NavLink to="/journal">Journal</NavLink>
+        <NavLink to="/itinerary">Itinerary</NavLink>
       </div>
       {isLoggedIn ? (
         <button

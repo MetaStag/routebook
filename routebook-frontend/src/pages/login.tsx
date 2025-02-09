@@ -2,12 +2,14 @@ import { useState } from "react";
 import { useAppDispatch } from "../hooks";
 import { login } from "../features/auth/authSlice";
 import { ToastContainer, toast } from "react-toastify";
+import { useNavigate } from "react-router";
 
 export default function Login() {
   const [signup, setSignup] = useState(true);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   const validate = (): boolean => {
     if (!username.trim()) {
@@ -40,8 +42,9 @@ export default function Login() {
       } else {
         const body = await response.json();
         localStorage.setItem("jwtToken", body.message);
-        dispatch(login());
+        dispatch(login(username));
         toast.success("Successfully signed up!");
+        navigate("/")
       }
     } else {
       const response = await fetch("http://localhost:3001/api/auth/login", {
@@ -59,8 +62,9 @@ export default function Login() {
       } else {
         const body = await response.json();
         localStorage.setItem("jwtToken", body.message);
-        dispatch(login());
+        dispatch(login(username));
         toast.success("Successfully logged in!");
+        navigate("/")
       }
     }
   };

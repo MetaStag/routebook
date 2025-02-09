@@ -14,7 +14,8 @@
 
   color-scheme: light dark;
   color: rgba(0, 0, 0, 0.87);
-  background-color: #ffffff;
+  background: rgb(159, 217, 204);
+  /* background: linear-gradient(90deg, rgba(204,241,202,1) 0%, rgba(159,236,236,1) 67%, rgba(160,184,236,1) 100%);  */
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -25,6 +26,12 @@
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
-    background-color: #ffffff;
+    background: rgb(241, 211, 174);
+    background: linear-gradient(
+      90deg,
+      rgba(241, 211, 174, 1) 0%,
+      rgba(247, 225, 159, 1) 67%,
+      rgba(211, 114, 140, 1) 100%
+    );
   }
 }

@@ -11,12 +11,11 @@ export default function App() {
   useEffect(() => {
     const token = localStorage.getItem("jwtToken");
     if (token) {
-      const decodedToken = jwtDecode(token);
+      const decodedToken:any = jwtDecode(token);
       if (decodedToken.exp) {
-        console.log(decodedToken.exp);
         let isExpired = decodedToken.exp < Date.now() / 1000;
         if (isExpired) dispatch(logout());
-        else dispatch(login());
+        else dispatch(login(decodedToken.username));
       }
     } else {
       dispatch(logout());
